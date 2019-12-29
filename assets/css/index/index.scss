@@ -23,6 +23,7 @@
         box-sizing: border-box;
         padding: 2px 12px;
         height: 26px;
+        color: white;
         cursor: pointer;
 
         &:hover {
@@ -39,13 +40,13 @@
           font-family: 'meituan';
           font-size: 14px;
           font-style: normal;
-          opacity: 0.3;
-          margin-right: 11px;
+          opacity: 0.8;
 
           &:before {
             width: 14px;
             height: 14px;
             display: inline-block;
+            margin-right:10px;
           }
         }
 

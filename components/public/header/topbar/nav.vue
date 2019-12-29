@@ -39,13 +39,45 @@
             nuxt-link(to='/site') 网站导航 
             div.subContainer
                 dl.hotel  
-                    dd
+                    dt 酒店旅游
+                    dd 国际机票
+                    dd 国际机票
+                    dd 国际机票
+                    dd 国际机票
+                    dd 国际机票
+                    dd 国际机票
+                    dd 国际机票
+                    dd 国际机票
+                    dd 国际机票
+                    dd 国际机票
+                    dd 国际机票
+                    dd 国际机票
                 dl.food
-                    dd
+                    dt 吃美食
+                    dd 烤鱼
+                    dd 烧烤
+                    dd 烤鱼
+                    dd 烧烤
+                    dd 烤鱼
+                    dd 烧烤
+                    dd 烤鱼
+                    dd 烧烤
                 dl.movie
-                    dd
+                    dt 看电影
+                    dd 热映电影
+                    dd 热映电影
+                    dd 热映电影
+                    dd 热映电影
+                    dd 热映电影
+                    dd 热映电影
                 dl.app
+                    dt 手机应用
                     dd
+                        a(href='#')
+                            img(src='https://s0.meituan.net/bs/fe-web-meituan/2d53095/img/appicons/meituan.png')
+                    dd
+                        a(href='#')
+                            img(src='https://s1.meituan.net/bs/fe-web-meituan/404d350/img/appicons/waimai.png')   
 </template>
 
 <script>

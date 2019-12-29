@@ -1,11 +1,11 @@
 <template lang='pug'>
   el-container.layout-default
-    el-header
+    el-header(height='197px')
       MyHeader
     el-main
-      div
-        nuxt
-    el-footer Footer
+      nuxt
+    el-footer footer
+      Footer
 </template>
 
 <script>
@@ -25,7 +25,7 @@ export default {
     overflow: unset;
 }
 .el-header{
-    background: rgb(212, 244, 248);
+    background: rgb(238, 235, 235);
     color: #000000;
     width: 100%;
     font-size: 12px;
