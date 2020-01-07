@@ -12,19 +12,18 @@
       .site-logo {
         display: inline-block;
         width: 128px;
-        width: 54px;
         height: 36px;
-        text-indent: -9999px;
+        text-indent: 9999px;
         background-position: -669px -748px;
         background-image: url(//s0.meituan.net/bs/file/?f=fe-sso-fs:build/assets/sp-normal.2ee5c09.png);
       }
 
       .login {
         float: right;
-      }
 
-      .bold {
-        font-style: normal;
+        .blod{
+          font-style: normal;
+        }
       }
     }
   }

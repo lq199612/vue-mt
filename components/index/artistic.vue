@@ -4,7 +4,7 @@
         div.m-istyle
             dl
                 dt 有格调
-                dd(v-for='item, idx in dataList' :key='idx' @mouseenter='handleMouseEnter') {{ item.name }}
+                dd(v-for='item, idx in dataList' :key='idx' :keyWord='item.keyWord' @mouseenter='handleMouseEnter') {{ item.name }}
             ul.ibody
                 li(v-for='item,idx in curItem' :key='idx')
                     el-card(shadow="never" :body-style="{ padding: '0px' }")
@@ -21,76 +21,94 @@
     
 
 <script>
+import Axios from "axios";
 export default {
   data() {
     return {
       dataList: [
         {
           name: "约会聚餐",
-          children: [
-            {
-              imgUrl:
-                "//p0.meituan.net/msmerchant/1f5b280c340fb5d74080ffaebb6ec76476229.jpg@331w_187h_1e_1c",
-              title: "杨记兴·臭鳜鱼（王府井店）",
-              pos: "经典四人餐，提供免费WiFi",
-              price: 554
-            },
-            {
-              imgUrl:
-                "//p0.meituan.net/msmerchant/1f5b280c340fb5d74080ffaebb6ec76476229.jpg@331w_187h_1e_1c",
-              title: "杨记兴·臭鳜鱼（王府井店）",
-              pos: "经典四人餐，提供免费WiFi",
-              price: 554
-            },
-            {
-              imgUrl:
-                "//p0.meituan.net/msmerchant/1f5b280c340fb5d74080ffaebb6ec76476229.jpg@331w_187h_1e_1c",
-              title: "杨记兴·臭鳜鱼（王府井店）",
-              pos: "经典四人餐，提供免费WiFi",
-              price: 554
-            },
-            {
-              imgUrl:
-                "//p0.meituan.net/msmerchant/1f5b280c340fb5d74080ffaebb6ec76476229.jpg@331w_187h_1e_1c",
-              title: "杨记兴·臭鳜鱼（王府井店）",
-              pos: "经典四人餐，提供免费WiFi",
-              price: 554
-            },
-            {
-              imgUrl:
-                "//p0.meituan.net/msmerchant/1f5b280c340fb5d74080ffaebb6ec76476229.jpg@331w_187h_1e_1c",
-              title: "杨记兴·臭鳜鱼（王府井店）",
-              pos: "经典四人餐，提供免费WiFi",
-              price: 554
-            }
-          ]
+          keyWord: "美食"
         },
         {
-          name: "丽人SPA"
+          name: "丽人SPA",
+          keyWord: "丽人"
         },
         {
-          name: "电影演出"
+          name: "电影演出",
+          keyWord: "电影"
         },
         {
-          name: "品质出游"
+          name: "品质出游",
+          keyWord: "出游"
         }
       ],
-      text: "约会聚餐"
+      text: "美食",
+      list:{}
     };
   },
   methods: {
-    handleMouseEnter(e) {
-      this.text = e.target.innerText;
+    async handleMouseEnter(e) {
+      this.text = e.target.getAttribute("keyWord");
+      // this.dataList.some(d=>{
+      //     curItem = d.children
+      //     return d.name == this.text
+      // })
+      // return curItem;
+      let {
+        data: { pois }
+      } = await Axios.get("/search/resultsByKeywords", {
+        params: {
+          keyword: this.text,
+          city: this.$store.state.geo.position.city
+        }
+      });
+      let l = []
+      self = this;
+      pois.forEach(d => {
+        if (d.photos.length) {
+          l.push({
+            imgUrl: d.photos[0].url,
+            title: d.name,
+            pos: d.address,
+            price: d.biz_ext.cost ? d.biz_ext.cost : 0
+          });
+        }
+      });
+      if(!self.list[this.test]){
+        self.list[this.test] = l.slice(0,6)
+      }
     }
   },
-  computed: {
-    curItem() {
-      let curItem = [];
-      this.dataList.some(d=>{
-          curItem = d.children
-          return d.name == this.text
-      })
-      return curItem;
+  async mounted() {
+      let {
+        data: { pois }
+      } = await Axios.get("/search/resultsByKeywords", {
+        params: {
+          keyword: '美食',
+          city: this.$store.state.geo.position.city
+        }
+      });
+      let l = []
+      self = this;
+      pois.forEach(d => {
+        if (d.photos.length) {
+          l.push({
+            imgUrl: d.photos[0].url,
+            title: d.name,
+            pos: d.address,
+            price: d.biz_ext.cost ? d.biz_ext.cost : 0
+          });
+        }
+      });
+      if(!self.list[this.test]){
+        self.list[this.test] = l.slice(0,6)
+      }
+  },
+  computed:{
+    curItem(){
+      console.log('computed',this.text);
+      return this.list[this.test]
     }
   }
 };

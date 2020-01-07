@@ -6,18 +6,16 @@
         img(alt='美团' src='https://s0.meituan.net/bs/fe-web-meituan/fa5f0f0/img/logo.png') 
       el-col.center(:span=15)
         div.wrapper
-          el-input(placeholder='搜索商家或地点' v-model='inputValue' @focus='isFocus=true' @blur='handleBlur') 
+          el-input(placeholder='搜索商家或地点' v-model='inputValue' @input='input' @focus='isFocus=true' @blur='handleBlur') 
           button.el-button.el-button--primary
             i.el-icon-search
           dl.hotPlace(v-show='isFocus && !inputValue')
             dt 热门搜索
-            dd(v-for='item,idx in hotPlaces' :key=idx) {{item}}
+            dd(v-for='item,idx in hotPlaces' :key=idx) {{item.name}}
           dl.searchList(v-show='isFocus && inputValue')
-            dd 火锅
-            dd 火锅
-            dd 火锅
+            dd(v-for='item in searchLists') {{item.name}}
         p.suggest
-            a(v-for='item,idx in hotPlaces' :key=idx) {{item}}
+            a(v-for='item,idx in hotPlaces' :key=idx) {{item.name}}
         ul.nav
           li
             nuxt-link.takeout(to='/') 美团外卖
@@ -46,26 +44,60 @@
 </template>
 
 <script>
+import Axios from "axios";
+import _ from "lodash";
+
 export default {
-  data(){
+  data() {
     return {
-      isFocus:false,
-      inputValue:'',
-      hotPlaces:['火锅','火锅','火锅'],
-      searchLists:['火锅','火锅','火锅','火锅']
-    }
+      isFocus: false,
+      inputValue: "",
+      hotPlaces: [],
+      searchLists: []
+    };
   },
-  watch:{
-    //- inputValue(){
-    //-   console.log(this.inputValue.length)
-    //-   console.log('hotPlace',this.isFocus && !this.inputValue.length)
-    //-   console.log('searchList',this.isFocus && this.inputValue.length)
-    //- }
+  watch: {
+    //- inputValue: _.debounce(async function() {
+    //-   self = this;
+    //-   let {
+    //-     status,
+    //-     data: { top }
+    //-   } = await Axios.get("/search/top", {
+    //-     params: {
+    //-       input: self.inputValue,
+    //-       city: self.$store.state.geo.position.city.replace("市", "")
+    //-     }
+    //-   });
+    //-   self.searchLists = top.slice(0, 10);
+    //- }, 100)
   },
-  methods:{
-    handleBlur(){
-      setTimeout(()=>this.isFocus=false,200)
-    }
+  methods: {
+    handleBlur() {
+      setTimeout(() => (this.isFocus = false), 200);
+    },
+    input: _.debounce(async function() {
+      self = this;
+      let {
+        status,
+        data: { top }
+      } = await Axios.get("/search/top", {
+        params: {
+          input: self.inputValue,
+          city: self.$store.state.geo.position.city.replace("市", "")
+        }
+      });
+      self.searchLists = top.slice(0, 10);
+    }, 100)
+  },
+  async mounted() {
+    let {
+      data: { result }
+    } = await Axios.get("/search/hotPlace", {
+      params: {
+        city: this.$store.state.geo.position.city
+      }
+    });
+    this.hotPlaces = result.slice(0, 5);
   }
 };
 </script>

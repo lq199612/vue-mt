@@ -4,7 +4,7 @@
         el-col
             Topbar
     el-row
-        el-col
+        el-col()
             Searchbar
 </template>
 

@@ -4,15 +4,18 @@
       MyHeader
     el-main
       nuxt
-    el-footer footer
+    el-footer
       Footer
 </template>
 
 <script>
 import MyHeader from "@/components/public/header/index";
+import Footer from '@/components/public/footer/index'
+
 export default {
   components: {
     MyHeader,
+    Footer
   }
 };
 </script>

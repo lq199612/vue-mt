@@ -14,12 +14,13 @@ import '..\\node_modules\\element-ui\\lib\\theme-chalk\\reset.css'
 
 import '..\\assets\\css\\main.css'
 
+import _77180f1e from '..\\layouts\\blank.vue'
 import _6f6c098b from '..\\layouts\\default.vue'
 
-const layouts = { "_default": _6f6c098b }
+const layouts = { "_blank": _77180f1e,"_default": _6f6c098b }
 
 export default {
-  head: {"title":"mt-app","meta":[{"charset":"utf-8"},{"name":"viewport","content":"width=device-width, initial-scale=1"},{"hid":"description","name":"description","content":"实战美团网"}],"link":[{"rel":"icon","type":"image\u002Fx-icon","href":"\u002Ffavicon.ico"}],"style":[],"script":[]},
+  head: {"title":"美团","meta":[{"charset":"utf-8"},{"name":"viewport","content":"width=device-width, initial-scale=1"},{"hid":"description","name":"description","content":"实战美团网"}],"link":[{"rel":"icon","type":"image\u002Fx-icon","href":"\u002Ffavicon.ico"}],"style":[],"script":[]},
 
   render (h, props) {
     const loadingEl = h('NuxtLoading', { ref: 'loading' })
