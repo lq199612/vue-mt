@@ -22,6 +22,9 @@ export default {
 </script>
 
 <style lang='scss' scoped>
-// @import "@/assets/css/public/layout.scss";
+//- @import "@/assets/css/public/layout.scss";
+.m-header{
+  background: white;
+}
 
 </style>

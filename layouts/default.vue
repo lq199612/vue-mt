@@ -1,4 +1,5 @@
 <template lang='pug'>
+div.top
   el-container.layout-default
     el-header(height='197px')
       MyHeader
@@ -28,7 +29,7 @@ export default {
     overflow: unset;
 }
 .el-header{
-    background: rgb(238, 235, 235);
+    background:white;
     color: #000000;
     width: 100%;
     font-size: 12px;
@@ -46,6 +47,6 @@ export default {
     "Helvetica Neue",
     "MIcrosoft YaHei",
     sans-serif !important;
-    background-color: #F8F8F8;
+    background-color:white;
 }
 </style>

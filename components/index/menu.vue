@@ -63,11 +63,12 @@ export default {
       });
     });
   },
-  // async asyncData({ params }) {
+  // async asyncData(ctx) {
+  //   let HOST = 'http://localhost:3000'
   //   let {
   //     status,
   //     data: { menu: menu1 }
-  //   } = await Axios.get("/geo/menu");
+  //   } = await Axios.get(`${HOST}/geo/getMenu`);
   //   console.log(menu1);
   //   let menu2 = menu1.map(d => {
   //     return {
@@ -76,7 +77,7 @@ export default {
   //       children: d.child
   //     };
   //   });
-  //   console.log(menu2);
+  //   // console.log(menu2);
   //   return {
   //     menu:menu2
   //   };

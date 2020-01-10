@@ -11,11 +11,14 @@
             i.el-icon-search
           dl.hotPlace(v-show='isFocus && !inputValue')
             dt 热门搜索
-            dd(v-for='item,idx in hotPlaces' :key=idx) {{item.name}}
+            dd(v-for='item,idx in hotPlaces' :key=idx) \
+              a(:href='"/products?good="+item.name') {{item.name}}
           dl.searchList(v-show='isFocus && inputValue')
-            dd(v-for='item in searchLists') {{item.name}}
+            dd(v-for='item in searchLists') 
+              a(:href='"/products?good="+item.name') {{item.name}}
         p.suggest
-            a(v-for='item,idx in hotPlaces' :key=idx) {{item.name}}
+            a(v-for='item,idx in hotPlaces' :key=idx) 
+              a(:href='"/products?good="+item.name') {{item.name}}
         ul.nav
           li
             nuxt-link.takeout(to='/') 美团外卖

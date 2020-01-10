@@ -6,7 +6,9 @@ import scrollBehavior from './router.scrollBehavior.js'
 const _fa482764 = () => interopDefault(import('..\\pages\\changeCity.vue' /* webpackChunkName: "pages_changeCity" */))
 const _20f7ea1e = () => interopDefault(import('..\\pages\\exit.vue' /* webpackChunkName: "pages_exit" */))
 const _2275a2b4 = () => interopDefault(import('..\\pages\\login.vue' /* webpackChunkName: "pages_login" */))
+const _55eefab7 = () => interopDefault(import('..\\pages\\products.vue' /* webpackChunkName: "pages_products" */))
 const _35a22aee = () => interopDefault(import('..\\pages\\regist.vue' /* webpackChunkName: "pages_regist" */))
+const _3237f780 = () => interopDefault(import('..\\pages\\text.vue' /* webpackChunkName: "pages_text" */))
 const _251d8b8f = () => interopDefault(import('..\\pages\\index.vue' /* webpackChunkName: "pages_index" */))
 
 // TODO: remove in Nuxt 3
@@ -38,9 +40,17 @@ export const routerOptions = {
     component: _2275a2b4,
     name: "login"
   }, {
+    path: "/products",
+    component: _55eefab7,
+    name: "products"
+  }, {
     path: "/regist",
     component: _35a22aee,
     name: "regist"
+  }, {
+    path: "/text",
+    component: _3237f780,
+    name: "text"
   }, {
     path: "/",
     component: _251d8b8f,
